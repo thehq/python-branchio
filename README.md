@@ -2,7 +2,7 @@
 
 [![PyPi version](https://img.shields.io/pypi/v/branchio.svg)](https://pypi.python.org/pypi/branchio)
 [![PyPi downloads](https://img.shields.io/pypi/dm/branchio.svg)](https://pypi.python.org/pypi/branchio)
-[![Circle CI](https://img.shields.io/circleci/token/ba05cb60f8cf01d2611264ef8fba82d0e07a4b68/project/thehq/python-branchio/master.svg)](https://circleci.com/gh/thehq/python-branchio/tree/master)
+[![Circle CI](https://img.shields.io/circleci/token/ab34af3bb5a52d97594d6fa0993a23b318e6ea79/project/thehq/python-branchio/master.svg)](https://circleci.com/gh/thehq/python-branchio/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/thehq/python-branchio/master.svg)](https://codecov.io/github/thehq/python-branchio)
 [![PyPi license](https://img.shields.io/pypi/l/branchio.svg)](https://pypi.python.org/pypi/branchio)
 
