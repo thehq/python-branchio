@@ -7,4 +7,6 @@ test:
     - pip install --upgrade -r test_requirements.txt
   override:
     - coverage run --source branchio/ -m unittest discover
+  post:
+    - pip install codecov && codecov
 
