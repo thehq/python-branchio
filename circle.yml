@@ -3,6 +3,8 @@ machine:
     version: 2.7.10
 
 test:
-  pre: pip install test_requirements.txt
-  override: coverage run --source branchio/ -m unittest discover
+  pre:
+    - pip install --upgrade -r test_requirements.txt
+  override:
+    - coverage run --source branchio/ -m unittest discover
 
