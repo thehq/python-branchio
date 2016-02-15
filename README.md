@@ -10,8 +10,10 @@ This library is intended to make API calls to the Branch.io API.
 
 ## Revision History
 
-  - v0.1.0:
-    - Initial Revision
+ - v0.1.1:
+   - [PR1](https://github.com/thehq/python-branchio/pull/1) - Updated to work with Python 3
+ - v0.1.0:
+   - Initial Revision
 
 ## Installation
 
