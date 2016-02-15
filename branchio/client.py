@@ -130,7 +130,7 @@ class Client(object):
         url = self.BRANCH_BASE_URI+url
 
         if self.verbose is True:
-            print "Making web request: "+url
+            print("Making web request: {}".format(url))
 
         if json_params is not None:
             encoded_params = json.dumps(json_params)
@@ -140,7 +140,7 @@ class Client(object):
             headers = {}
 
         if encoded_params is not None and self.verbose is True:
-            print "Params: "+encoded_params
+            print("Params: {}".format(encoded_params))
 
         request = urllib2.Request(url, encoded_params, headers)
         request.get_method = lambda: method
