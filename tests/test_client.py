@@ -86,8 +86,8 @@ class ClientCheckApiTests(unittest.TestCase):
     def get_client(self, return_value):
         branch_key = os.environ.get('BRANCH_IO_KEY')
         if branch_key is None:
-            print "WARNING!  Environment variable 'BRANCH_IO_KEY' is not defined." + \
-                  "  Branch API Tests will return stubbed responses."
+            print("WARNING!  Environment variable 'BRANCH_IO_KEY' is not defined."
+                  "  Branch API Tests will return stubbed responses.")
             branch_key = "FAKE KEY"
             branchio.Client.make_api_call = mock.MagicMock(return_value=return_value)
 

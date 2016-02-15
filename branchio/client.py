@@ -1,5 +1,16 @@
-import urllib2
 import json
+import sys
+try:
+    from urllib.request import Request, urlopen
+except ImportError:
+    from urllib2 import Request, urlopen
+
+if sys.version_info < (3,):
+    text_type = unicode
+    binary_type = str
+else:
+    text_type = str
+    binary_type = bytes
 
 
 class Client(object):
@@ -84,20 +95,20 @@ class Client(object):
 
         # Check Params
         self._check_param("data", data, params, type=dict)
-        self._check_param("alias", alias, params, type=(str, unicode))
+        self._check_param("alias", alias, params, type=(binary_type, text_type))
         self._check_param("type", type, params, type=int, lte=2, gte=0)
         self._check_param("duration", duration, params, type=int)
-        self._check_param("identity", identity, params, type=(str, unicode), max_length=127)
-        self._check_param("tags", tags, params, type=list, sub_type=(str, unicode), sub_max_length=64)
-        self._check_param("campaign", campaign, params, type=(str, unicode), max_length=128)
-        self._check_param("feature", feature, params, type=(str, unicode), max_length=128)
-        self._check_param("channel", channel, params, type=(str, unicode), max_length=128)
-        self._check_param("stage", stage, params, type=(str, unicode), max_length=128)
+        self._check_param("identity", identity, params, type=(binary_type, text_type), max_length=127)
+        self._check_param("tags", tags, params, type=list, sub_type=(binary_type, text_type), sub_max_length=64)
+        self._check_param("campaign", campaign, params, type=(binary_type, text_type), max_length=128)
+        self._check_param("feature", feature, params, type=(binary_type, text_type), max_length=128)
+        self._check_param("channel", channel, params, type=(binary_type, text_type), max_length=128)
+        self._check_param("stage", stage, params, type=(binary_type, text_type), max_length=128)
 
         if skip_api_call is True:
             return params
         else:
-            self._check_param("branch_key", self.branch_key, params, optional=False, type=(str, unicode))
+            self._check_param("branch_key", self.branch_key, params, optional=False, type=(binary_type, text_type))
             return self.make_api_call(method, url, json_params=params)
 
     def create_deep_linking_urls(self, url_params):
@@ -130,7 +141,7 @@ class Client(object):
         url = self.BRANCH_BASE_URI+url
 
         if self.verbose is True:
-            print "Making web request: "+url
+            print("Making web request: {}".format(url))
 
         if json_params is not None:
             encoded_params = json.dumps(json_params)
@@ -140,9 +151,9 @@ class Client(object):
             headers = {}
 
         if encoded_params is not None and self.verbose is True:
-            print "Params: "+encoded_params
+            print("Params: {}".format(encoded_params))
 
-        request = urllib2.Request(url, encoded_params, headers)
+        request = Request(url, encoded_params.encode('utf-8'), headers)
         request.get_method = lambda: method
-        response = urllib2.urlopen(request).read()
-        return json.loads(response)
+        response = urlopen(request).read()
+        return json.loads(response.decode('utf-8'))
