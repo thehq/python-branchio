@@ -1,5 +1,8 @@
-import urllib2
 import json
+try:
+    from urllib.request import Request, urlopen
+except ImportError:
+    from urllib2 import Request, urlopen
 
 
 class Client(object):
@@ -142,7 +145,7 @@ class Client(object):
         if encoded_params is not None and self.verbose is True:
             print("Params: {}".format(encoded_params))
 
-        request = urllib2.Request(url, encoded_params, headers)
+        request = Request(url, encoded_params, headers)
         request.get_method = lambda: method
-        response = urllib2.urlopen(request).read()
+        response = urlopen(request).read()
         return json.loads(response)
