@@ -153,7 +153,7 @@ class Client(object):
         if encoded_params is not None and self.verbose is True:
             print("Params: {}".format(encoded_params))
 
-        request = Request(url, encoded_params, headers)
+        request = Request(url, encoded_params.encode('utf-8'), headers)
         request.get_method = lambda: method
         response = urlopen(request).read()
-        return json.loads(response)
+        return json.loads(response.decode('utf-8'))
